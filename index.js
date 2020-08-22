@@ -94,7 +94,7 @@ function MarantzDenonTelnetPlatform(log, config, api) {
             // UPnP testing
             platform.log('MK >>: starting UPnP discovery...');
             var mdf = new MarantzDenonUPnPDiscovery(function(error, device) {   // discover devices
-                platform.log('MK >>:' + JSON.stringify(d));
+                platform.log('MK >>:' + JSON.stringify(device));
            
             // don't use UPnP, still does not work for old device
             // var d = config.devices[0];
