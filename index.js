@@ -94,7 +94,6 @@ function MarantzDenonTelnetPlatform(log, config, api) {
             // UPnP testing
             platform.log('MK >>: starting UPnP discovery...');
             var mdf = new MarantzDenonUPnPDiscovery(function(error, device) {   // discover devices
-                platform.log('MK >>:' + JSON.stringify(error)); 
                 platform.log('MK >>:' + JSON.stringify(device));
             });
             platform.log('MK >>: end of UPnP discovery.');
@@ -195,9 +194,9 @@ MarantzDenonTelnetPlatform.prototype.addAccessoriesForDevice = function(device) 
     }
     
     // ignore scans, device is obsolete, force basic values 
-    zoneId = "FP";
-    var zoneName = "MAIN ZONE"
-    DenonMarantzAVRSpeakerAccessory.create(platform, device, zoneId, zoneName);
+    //zoneId = "FP";
+    //var zoneName = "MAIN ZONE"
+    //DenonMarantzAVRSpeakerAccessory.create(platform, device, zoneId, zoneName);
 
     // add speaker for all available Zones
     /*
@@ -210,6 +209,18 @@ MarantzDenonTelnetPlatform.prototype.addAccessoriesForDevice = function(device) 
             }
         }
     }); */
+    
+    // add speaker for all available Zones
+    var mdt = new MarantzDenonTelnet(device.ip);
+    mdt.getZones(function(error, data) {
+        this.log('MK >> zones:' + data);
+        if (data) {
+            for (var zoneId in data) {
+                DenonMarantzAVRSpeakerAccessory.create(platform, device, zoneId, data[zoneId]);
+            }
+        }
+    });
+    
 };
 
 
