@@ -101,8 +101,10 @@ function MarantzDenonTelnetPlatform(log, config, api) {
                 
                 platform.log('Found Device: ' + device.friendlyName + ' (' + device.ip + ')');   
                 if (platform.devicesDB[device.mac] || platform.devicedBlacklist[device.mac]) {
+                    platform.log('MK >> device already registered');
                     return;
                 }
+                platform.log('MK >> calling addAccessoriesForDevice');
                 platform.addAccessoriesForDevice(device);
             });
         }.bind(this));
