@@ -75,10 +75,10 @@ function MarantzDenonTelnetPlatform(log, config, api) {
     this.config = config;
     this.accessories = [];
 
-    log("CONFIG: ", JSON.stringify(config));
-    log("ip: ", config.devices[0].ip);
-    log("mac: ", config.devices[0].mac);
-    log("name: ", config.devices[0].friendlyName);
+    //log("CONFIG: ", JSON.stringify(config));
+    //log("ip: ", config.devices[0].ip);
+    //log("mac: ", config.devices[0].mac);
+    //log("name: ", config.devices[0].friendlyName);
     
     
     if (api) {
