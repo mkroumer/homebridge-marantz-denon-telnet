@@ -94,20 +94,17 @@ function MarantzDenonTelnetPlatform(log, config, api) {
             // UPnP testing
             platform.log('MK >>: starting UPnP discovery...');
             var mdf = new MarantzDenonUPnPDiscovery(function(error, device) {   // discover devices
-                platform.log('MK >>:' + JSON.stringify(device));
-            });
-            platform.log('MK >>: end of UPnP discovery.');
-            // end of UPnP testing
-            
+                platform.log('MK >>:' + JSON.stringify(d));
+           
             // don't use UPnP, still does not work for old device
-            var d = config.devices[0];
+            // var d = config.devices[0];
                 
-                platform.log('Found Device: ' + d.friendlyName + ' (' + d.ip + ')');   
-                if (platform.devicesDB[d.mac] || platform.devicedBlacklist[d.mac]) {
+                platform.log('Found Device: ' + device.friendlyName + ' (' + device.ip + ')');   
+                if (platform.devicesDB[device.mac] || platform.devicedBlacklist[device.mac]) {
                     return;
                 }
-                platform.addAccessoriesForDevice(d);
-            //});
+                platform.addAccessoriesForDevice(device);
+            });
         }.bind(this));
     }
 }
